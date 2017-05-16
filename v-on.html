@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="box">
+        <input type="button" value="增加颜色" v-on:dblclick="add()">
+        <ul>
+            <li v-for="(value,index) in arr">
+                {{value}} 
+            </li>
+        </ul>
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                arr:['red','blue','black','yellow'],
+                json:{a:'white',b:'pink',c:'orange'}
+            },
+            methods:{
+                add:function(){
+                    this.arr.push('gray');//this指new出来的vm这个实例；
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

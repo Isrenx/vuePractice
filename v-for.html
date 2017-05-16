@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    
+    <!-- <div class="box">
+        <input type="text" v-model="msg">
+        {{msg}}
+    </div> -->
+
+    <div id="box">
+        <ul>
+            <li v-for="(value,index) in arr">
+                {{value}}   {{index}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(value,key) in json">
+                {{value}}   {{key}}
+            </li>
+        </ul>
+    </div>
+    
+    <script>
+        // var vm = new Vue({
+        //     el:'.box',
+        //     data:{
+        //         msg:'Welcome Vue!'
+        //     }
+        // });
+
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                arr:['red','blue','black','yellow'],
+                json:{a:'white',b:'pink',c:'orange'}
+            }
+        });
+    </script>
+
+</body>
+</html>
