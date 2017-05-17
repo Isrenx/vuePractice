@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .red{color: red;}
+        .blue{background-color: blue;}
+    </style>
+</head>
+<body>
+
+    <div id="box">
+        
+        <p :class="{red:true,blue:true}">这里存放信息</p>
+        <!-- 这里的json中的数据是class类名 -->
+        
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                red:'red',//第一个red是p的class中的[red]，是数据；第二个red是指class的red的这个名字，也就是style中的red；
+                b:'blue' 
+            }
+        });
+    </script>
+
+</body>
+</html>

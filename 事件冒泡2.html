@@ -10,7 +10,7 @@
 
     <div id="box">
         <div @click="add2()">
-            <input type="button" value="增加颜色" @click="add($event)">
+            <input type="button" value="增加颜色" @click.stop="add($event)">
             <!-- v-on可以简写为@ -->
         </div>
     </div>
@@ -24,16 +24,15 @@
                 a:true//a为true时，显示；a为false，隐藏；
             },
             methods:{
-                add:function(ev){
-                 alert(ev.clientX);   
+                add:function(){
+                 alert('1');   
                 },
                 add2:function(){
                  alert('2');   
                 }
             }
         });
-        //事件对象：@click="add($event)",传入的只能是$event;
-        //事件冒泡:
+        //事件冒泡:@click.stop
     </script>
 
 </body>

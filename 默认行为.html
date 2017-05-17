@@ -10,8 +10,8 @@
 
     <div id="box">
         <div @click="add2()">
-            <input type="button" value="增加颜色" @click="add($event)">
-            <!-- v-on可以简写为@ -->
+            <input type="button" value="增加颜色" @contextmenu="add($event)">
+            <!-- contextmenu鼠标右键 -->
         </div>
     </div>
     
@@ -25,15 +25,15 @@
             },
             methods:{
                 add:function(ev){
-                 alert(ev.clientX);   
+                 alert('1');
+                 ev.preventDefault();//阻止默认行为   
                 },
                 add2:function(){
                  alert('2');   
                 }
             }
         });
-        //事件对象：@click="add($event)",传入的只能是$event;
-        //事件冒泡:
+        //阻止默认行为：1）ev.preventDefault();  2）
     </script>
 
 </body>

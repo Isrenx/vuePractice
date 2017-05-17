@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="box">
+        
+        <input type="text" v-model="msg">
+        <br/>
+        <p v-html="msg"></p>  <!-- 转义html -->
+        <p v-once>{{msg}}</p>  <!-- 单次插值 -->
+        
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                msg:'welcome vue'
+            }
+        });
+    </script>
+
+</body>
+</html>

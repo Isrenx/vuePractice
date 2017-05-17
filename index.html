@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+</head>
+<body> 
+    <div id="box"><input type="button" @click='get()' value="va"></div>
+    <script>
+         new Vue({
+            el: '#box',
+            data: {
+                // msg: 'd'
+            },
+            methods: {
+               get: function(){ 
+                 this.$http.jsonp(
+                    'http://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{
+                    wd: 'abc'
+                 },{
+                    'jsonp': 'cb'
+                 }).then(function(res){ 
+                      console.log(res.data.s)
+                      // this.msg=res.data.s
+                 },function(res){
+                    console.log(res.status)
+                 })
+               }
+             }
+         })
+    </script>
+</body>
+</html>
+<!-- 
+            el:'#box',
+            data:{
+            },
+            methods:{
+                get:function(){
+                    this.$http.jsonp('http://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{
+                        wd:'a'
+                    },{
+                        jsonp:'cb'
+                    }).then(function(res){
+                        alert(res.data.s)
+                        console.log(res.status)
+                    },function(res){
+                        console.log(res.status)
+                    })
+                }
+            } -->

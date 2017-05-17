@@ -9,10 +9,10 @@
 <body>
 
     <div id="box">
-        <div @click="add2()">
-            <input type="button" value="增加颜色" @click="add($event)">
-            <!-- v-on可以简写为@ -->
-        </div>
+        
+        <input type="text" value="增加颜色" @keydown="add($event)">
+        <!-- keydown键盘事件 -->
+        
     </div>
     
     <script>
@@ -25,15 +25,16 @@
             },
             methods:{
                 add:function(ev){
-                 alert(ev.clientX);   
+                    if ( ev.keyCode == 13 ) {
+                        alert('您按了Enter');
+                    }
                 },
                 add2:function(){
                  alert('2');   
                 }
             }
         });
-        //事件对象：@click="add($event)",传入的只能是$event;
-        //事件冒泡:
+        //键盘事件：@keydown  1)$event ev.keyCode;
     </script>
 
 </body>

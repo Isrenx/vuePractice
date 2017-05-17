@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="box">
+        
+        <img :src="url" alt="" :width="wjson.w">
+        <!-- v-bind用于绑定属性，简写:src -->
+        
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                url:'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
+                wjson:{
+                    w:'300px'
+                }
+            },
+            methods:{
+                add:function(){
+                    
+                    alert('您按了Enter');
+                    
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

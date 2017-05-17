@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+</head>
+<body>
+
+    <div id="box">
+        
+        <input type="text" v-model="msg" @keyup="get()"/>
+
+        <ul>
+            <li v-for="value in myData">{{value}}</li>
+        </ul>
+        <p v-show="myData.length==0">暂无数据</p>
+        
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                myData:[],
+                msg:''
+            },
+            methods:{
+                get:function(){
+                    this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{
+                        wd:this.msg
+                    },{
+                        'jsonp':'cb'
+                    }).then(function(res){
+                        this.myData = res.data.s;
+                    },function(){
+
+                    });
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

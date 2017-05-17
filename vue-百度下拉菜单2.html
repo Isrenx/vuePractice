@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>百度下拉菜单模仿</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/vue-resource.js"></script>
+    <style>
+        body{margin: 0;padding: 0;}
+        .wrapper{position: absolute;left: 50%;top: 20%;margin-left: -325px;}
+        .pic{width: 651px;height: 129px;text-align: center;}
+        .pic img{width: 40%;}
+        .btn{display:inline-block;width: 100px;height: 36px;line-height:36px;color: #fff;font-size: 15px;letter-spacing: 1px;background: #3385ff;border-bottom: 1px solid #2d78f4;outline: medium;-webkit-appearance:none;-webkit-border-radius:0;text-align: center;margin-left: -6px;}
+        .text{width: 539px;height: 33px;border: 1px solid #b6b6b6;background-color: #fff;display: inline-block;overflow: hidden;text-align: left;padding-left: 10px;}
+        .list{list-style: none;border: 1px solid #b6b6b6;border-top: none;margin-top: 0;padding-left: 0;}
+        .list li{width: 98%;height: 35px;line-height: 35px;padding-left: 2%;}
+        .list li:hover{background-color: #f8f8f8;}
+        .list li.gray{background-color: #f8f8f8;}
+    </style>
+</head>
+<body>
+	<div id="box" :class="{wrapper:a}">
+        <div :class="{pic:a}"><img src="images/bd.png" alt=""></div>
+		<input type="text" v-model="msg" :class="{text:a}" @keyup="get($event)" @keydown.down="changeDown()" @keydown.up.prevent="changeTop()" />
+        <span :class="{btn:a}" @click="search()">百度一下</span>
+        <ul :class="{list:a}" v-show="myData.length!=0">
+            <li v-for="(value,index) in myData" :class="{gray:index==now}" @click="search()">{{value}}</li>
+        </ul>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+            el:'#box',
+            data:{
+                a:true,
+                b:false,
+                myData:[],
+                msg:'',
+                now:-1
+            },
+            methods:{
+                get:function(ev){
+
+                    //使用键盘的上下键时，阻止get函数运行；避免再次查找此时输入框中的匹配数据；
+                    if ( ev.keyCode == 38 || ev.keyCode == 40 ) {
+                        return;
+                    }
+
+                    //按回车键搜索当前词的内容
+                    if ( ev.keyCode == 13 ) {
+                        window.open('https://www.baidu.com/s?wd='+this.msg);
+                        this.msg = '';
+                    }
+
+                    this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{
+                        wd:this.msg
+                    },{
+                        'jsonp':'cb'
+                    }).then(function(res){
+                        this.myData = res.data.s;
+                    },function(res){
+                        console.log(res.status);
+                    });
+                },
+                changeDown:function(){
+                    this.now++;
+                    if ( this.now == this.myData.length ) {
+                        this.now = -1;
+                    }
+                    //键盘上下键滑动到某个词时，输入框的词变成当前词；
+                    this.msg = this.myData[this.now];
+                },
+                changeTop:function(){
+                    this.now--;
+                    if ( this.now == -2 ) {
+                        this.now = this.myData.length;
+                    }
+                    this.msg = this.myData[this.now];
+                },
+                search:function(){
+                    window.open('https://www.baidu.com/s?wd='+this.msg);
+                    this.msg = '';
+                }
+            }
+        });
+	</script>
+</body>
+</html>

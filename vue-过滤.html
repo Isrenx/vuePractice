@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="box">
+        
+        {{msg.toUpperCase()}}
+        <br/>
+        {{msgL.toLowerCase()}}
+        <br/>
+        {{(msgL.toLowerCase())[0].toUpperCase() + (msgL.toLowerCase()).slice(1)}}<!-- 将大写的字母转化成首字母大写 -->
+        
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                msg:'welcome vue',
+                msgL:'WELCOME VUE',
+
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -25,7 +25,8 @@
             },
             methods:{
                 add:function(ev){
-                 alert(ev.clientX);   
+                 alert(ev.clientX);
+                 ev.cancelBubble=true;   
                 },
                 add2:function(){
                  alert('2');   

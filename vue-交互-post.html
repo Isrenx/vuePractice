@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+</head>
+<body>
+
+    <div id="box">
+        
+        <input type="button" @click="get()" value='button'>
+        
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+
+            },methods:{
+                get:function(){
+                    this.$http.post('post.php',{
+                        a:9,
+                        b:8
+                    },{
+                        emulateJSON:true
+                    }).then(function(res){
+                        alert(res.data);
+                        console.log(res.status);
+                    },function(res){
+                        console.log(res.status);
+                    });
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

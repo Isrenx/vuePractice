@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="box">
+        
+        <p :style="json">这里存放信息</p>
+        <!-- 这里的json中的数据是class类名 -->
+        
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el:'#box',
+            data:{
+                json:{
+                    color:'#fff',
+                    backgroundColor:'red'
+                }
+            },
+            methods:{
+                add:function(){
+                    
+                    alert('您按了Enter');
+                    
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

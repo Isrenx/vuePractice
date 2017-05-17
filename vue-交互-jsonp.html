@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSONP</title>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/vue-resource.js"></script>
+
+</head>
+<body>
+	<div id="box">
+		<input type="button" name="" value="jsonp" @click="get()">
+	</div>
+	<script type="text/javascript">
+		new Vue({
+            el:'#box',
+            data:{
+
+            },
+            methods:{
+                get:function(){
+                    this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{
+                        wd:'ab'
+                    },{
+                        'jsonp':'cb'
+                    }).then(function(res){
+                        console.log(res.data.s);
+                    },function(res){
+                        console.log(res.status);
+                    });
+                }
+            }
+        });
+	</script>
+</body>
+</html>
